@@ -1,0 +1,374 @@
+/*
+ * Aura Dark for Logseq
+ * Port of the VS Code theme "Aura Dark" by Vinay (vinaycodes-io), MIT.
+ * https://github.com/vinaycodes-io/aura-dark-theme
+ *
+ * Bundled font: Hack Nerd Font Mono (Nerd Fonts v3.5.1, see fonts/LICENSE.md).
+ */
+
+/* ---------- Fonts ---------- */
+
+@font-face {
+  font-family: "Hack Nerd Font Mono";
+  src: url("./fonts/HackNerdFontMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hack Nerd Font Mono";
+  src: url("./fonts/HackNerdFontMono-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hack Nerd Font Mono";
+  src: url("./fonts/HackNerdFontMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hack Nerd Font Mono";
+  src: url("./fonts/HackNerdFontMono-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- Palette ---------- */
+
+html[data-theme="dark"] {
+  /* Aura palette (names follow the original README) */
+  --aura-bg-editor: #1e1f29;
+  --aura-bg-sidebar: #1a1b24;
+  --aura-bg-chrome: #17181f;
+  --aura-bg-hover: #23242f;
+  --aura-bg-active: #2a2c37;
+  --aura-border: #12131a;
+  --aura-border-soft: #2a2c3a;
+
+  --aura-text: #e0e0e0;
+  --aura-text-secondary: #a6accd;
+  --aura-text-muted: #6b7a99;
+  --aura-text-faint: #3e4460;
+
+  --aura-purple: #c792ea;
+  --aura-purple-light: #d4aaff;
+  --aura-purple-button: #7b3fbe;
+  --aura-purple-button-hover: #9b5fd4;
+  --aura-periwinkle: #82aaff;
+  --aura-blue: #61afef;
+  --aura-green: #c3e88d;
+  --aura-gold: #ffcb6b;
+  --aura-amber: #ffd580;
+  --aura-teal: #7fdbca;
+  --aura-cyan: #89ddff;
+  --aura-peach: #f78c6c;
+  --aura-rose: #f07178;
+  --aura-red: #ff5370;
+  --aura-violet: #9b8fef;
+  --aura-punctuation: #697098;
+  --aura-attribute: #f9a87a;
+  --aura-type: #c8a84b;
+
+  --aura-font-mono: "Hack Nerd Font Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  /* Nerd Font as the last fallback: regular text keeps the UI font,
+     Nerd Font icon glyphs (private use area) still render. */
+  --ls-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Hack Nerd Font Mono";
+
+  /* ----- Logseq new UI: gray scale (01 = app background, 12 = high-contrast text) ----- */
+  --lx-gray-01: #1e1f29;
+  --lx-gray-02: #1a1b24;
+  --lx-gray-03: #23242f;
+  --lx-gray-04: #2a2c37;
+  --lx-gray-05: #2e3040;
+  --lx-gray-06: #343647;
+  --lx-gray-07: #3e4460;
+  --lx-gray-08: #4e5470;
+  --lx-gray-09: #6b7a99;
+  --lx-gray-10: #7a8099;
+  --lx-gray-11: #a6accd;
+  --lx-gray-12: #e0e0e0;
+
+  --lx-gray-01-alpha: #1e1f29f2;
+  --lx-gray-02-alpha: #1a1b24f2;
+  --lx-gray-03-alpha: #c5c8d40d;
+  --lx-gray-04-alpha: #c5c8d414;
+  --lx-gray-05-alpha: #c5c8d41c;
+  --lx-gray-06-alpha: #c5c8d424;
+  --lx-gray-07-alpha: #c5c8d433;
+  --lx-gray-08-alpha: #c5c8d44d;
+  --lx-gray-09-alpha: #c5c8d480;
+  --lx-gray-10-alpha: #c5c8d499;
+  --lx-gray-11-alpha: #c5c8d4cc;
+  --lx-gray-12-alpha: #e0e0e0f2;
+
+  /* ----- Logseq new UI: accent scale (purple) ----- */
+  --lx-accent-01: #1f1a2b;
+  --lx-accent-02: #241d33;
+  --lx-accent-03: #2f2442;
+  --lx-accent-04: #382a52;
+  --lx-accent-05: #42315f;
+  --lx-accent-06: #4d396f;
+  --lx-accent-07: #5c4585;
+  --lx-accent-08: #6a4a9c;
+  --lx-accent-09: #7b3fbe;
+  --lx-accent-10: #9b5fd4;
+  --lx-accent-11: #c792ea;
+  --lx-accent-12: #e5ccff;
+
+  /* ----- shadcn tokens (HSL channels, consumed as hsl(var(--x))) ----- */
+  --background: 235 15% 14%;
+  --foreground: 0 0% 88%;
+  --card: 234 16% 12%;
+  --card-foreground: 0 0% 88%;
+  --popover: 234 16% 12%;
+  --popover-foreground: 0 0% 88%;
+  --primary: 276 68% 75%;
+  --primary-foreground: 235 15% 14%;
+  --secondary: 231 13% 19%;
+  --secondary-foreground: 0 0% 88%;
+  --muted: 235 15% 16%;
+  --muted-foreground: 228 13% 54%;
+  --accent: 231 13% 19%;
+  --accent-foreground: 0 0% 88%;
+  --destructive: 350 100% 66%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 233 16% 20%;
+  --input: 233 16% 20%;
+  --ring: 276 68% 75%;
+
+  /* ----- Logseq classic variables ----- */
+  --ls-primary-background-color: var(--aura-bg-editor);
+  --ls-secondary-background-color: var(--aura-bg-sidebar);
+  --ls-tertiary-background-color: var(--aura-bg-active);
+  --ls-quaternary-background-color: var(--aura-bg-hover);
+  --ls-table-tr-even-background-color: var(--aura-bg-sidebar);
+  --ls-active-primary-color: var(--aura-purple);
+  --ls-active-secondary-color: var(--aura-purple-light);
+
+  --ls-border-color: var(--aura-border-soft);
+  --ls-secondary-border-color: var(--aura-border);
+  --ls-tertiary-border-color: var(--aura-border-soft);
+  --ls-guideline-color: var(--aura-bg-active);
+
+  --ls-primary-text-color: var(--aura-text);
+  --ls-secondary-text-color: var(--aura-text-secondary);
+  --ls-title-text-color: var(--aura-purple);
+  --ls-head-text-color: var(--aura-text);
+  --ls-icon-color: var(--aura-text-muted);
+
+  --ls-link-text-color: var(--aura-purple);
+  --ls-link-text-hover-color: var(--aura-purple-light);
+  --ls-link-ref-text-color: var(--aura-purple);
+  --ls-link-ref-text-hover-color: var(--aura-purple-light);
+  --ls-block-ref-link-text-color: var(--aura-periwinkle);
+  --ls-tag-text-color: var(--aura-teal);
+  --ls-tag-text-hover-color: var(--aura-teal);
+
+  --ls-block-bullet-color: var(--aura-text-faint);
+  --ls-block-bullet-border-color: var(--aura-bg-active);
+  --ls-homepage-bullet-color: var(--aura-text-faint);
+  --ls-block-highlight-color: #c792ea20;
+  --ls-a-chosen-bg: #c792ea20;
+  --ls-menu-hover-color: var(--aura-bg-active);
+  --ls-selection-background-color: #c792ea33;
+  --ls-selection-text-color: var(--aura-text);
+
+  --ls-block-properties-background-color: var(--aura-bg-sidebar);
+  --ls-page-properties-background-color: var(--aura-bg-sidebar);
+
+  --ls-page-checkbox-color: var(--aura-bg-active);
+  --ls-page-checkbox-border-color: var(--aura-text-faint);
+
+  --ls-page-blockquote-color: var(--aura-text-muted);
+  --ls-page-blockquote-bg-color: var(--aura-bg-sidebar);
+  --ls-page-blockquote-border-color: var(--aura-purple);
+
+  --ls-page-mark-color: var(--aura-bg-editor);
+  --ls-page-mark-bg-color: var(--aura-amber);
+
+  --ls-page-inline-code-color: var(--aura-green);
+  --ls-page-inline-code-bg-color: var(--aura-bg-chrome);
+  --ls-right-sidebar-code-bg-color: var(--aura-bg-chrome);
+
+  --ls-scrollbar-foreground-color: #3e445155;
+  --ls-scrollbar-background-color: transparent;
+  --ls-scrollbar-thumb-hover-color: #c792ea40;
+
+  --ls-search-background-color: var(--aura-bg-sidebar);
+  --ls-header-button-background: var(--aura-bg-chrome);
+  --ls-slide-background-color: var(--aura-bg-editor);
+  --ls-cloze-text-color: var(--aura-amber);
+  --ls-focus-ring-color: #c792ea99;
+
+  --ls-error-text-color: var(--aura-red);
+  --ls-error-background-color: #ff537022;
+  --ls-warning-text-color: var(--aura-amber);
+  --ls-warning-background-color: #ffd58022;
+  --ls-success-text-color: var(--aura-green);
+  --ls-success-background-color: #c3e88d22;
+
+  color-scheme: dark;
+}
+
+/* ---------- Layout surfaces ---------- */
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] #main-content-container {
+  background-color: var(--aura-bg-editor);
+}
+
+html[data-theme="dark"] .cp__header {
+  background-color: var(--aura-bg-chrome);
+  border-bottom: 1px solid var(--aura-border);
+}
+
+html[data-theme="dark"] .left-sidebar-inner {
+  background-color: var(--aura-bg-sidebar);
+  border-right: 1px solid var(--aura-border);
+}
+
+html[data-theme="dark"] .cp__right-sidebar {
+  background-color: var(--aura-bg-chrome);
+  border-left: 1px solid var(--aura-border);
+}
+
+html[data-theme="dark"] ::selection {
+  background-color: #c792ea33;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background-color: #3e445155;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background-color: #c792ea70;
+}
+
+/* ---------- Content ---------- */
+
+html[data-theme="dark"] .page-title,
+html[data-theme="dark"] .ls-block h1,
+html[data-theme="dark"] .ls-block h2,
+html[data-theme="dark"] .ls-block h3,
+html[data-theme="dark"] .ls-block h4,
+html[data-theme="dark"] .ls-block h5,
+html[data-theme="dark"] .ls-block h6 {
+  color: var(--aura-purple);
+}
+
+html[data-theme="dark"] .ls-block b,
+html[data-theme="dark"] .ls-block strong {
+  color: var(--aura-gold);
+}
+
+html[data-theme="dark"] .ls-block blockquote {
+  font-style: italic;
+}
+
+/* Admonitions map to the editor diagnostic colors */
+html[data-theme="dark"] .admonitionblock {
+  border-left: 3px solid var(--aura-text-muted);
+  background-color: var(--aura-bg-sidebar);
+}
+
+html[data-theme="dark"] .admonitionblock.note { border-left-color: var(--aura-periwinkle); }
+html[data-theme="dark"] .admonitionblock.tip { border-left-color: var(--aura-teal); }
+html[data-theme="dark"] .admonitionblock.important { border-left-color: var(--aura-purple); }
+html[data-theme="dark"] .admonitionblock.warning { border-left-color: var(--aura-amber); }
+html[data-theme="dark"] .admonitionblock.caution { border-left-color: var(--aura-red); }
+
+/* ---------- Code ---------- */
+
+html[data-theme="dark"] code,
+html[data-theme="dark"] pre,
+html[data-theme="dark"] kbd,
+html[data-theme="dark"] .CodeMirror {
+  font-family: var(--aura-font-mono);
+}
+
+html[data-theme="dark"] .CodeMirror {
+  background-color: var(--aura-bg-chrome);
+  color: var(--aura-text);
+}
+
+html[data-theme="dark"] .CodeMirror-gutters {
+  background-color: var(--aura-bg-chrome);
+  border-right: 1px solid var(--aura-border);
+}
+
+html[data-theme="dark"] .CodeMirror-linenumber { color: var(--aura-text-faint); }
+html[data-theme="dark"] .CodeMirror-cursor { border-left-color: var(--aura-purple); }
+html[data-theme="dark"] .CodeMirror-selected,
+html[data-theme="dark"] .CodeMirror-focused .CodeMirror-selected { background: #c792ea33; }
+html[data-theme="dark"] .CodeMirror-activeline-background { background: var(--aura-bg-active); }
+html[data-theme="dark"] .CodeMirror-matchingbracket {
+  color: var(--aura-purple) !important;
+  background: #c792ea22;
+}
+
+/* CodeMirror 5 tokens (TextMate scopes collapsed to CM classes) */
+html[data-theme="dark"] .CodeMirror .cm-comment { color: var(--aura-text-muted); font-style: italic; }
+html[data-theme="dark"] .CodeMirror .cm-keyword { color: var(--aura-purple); font-style: italic; }
+html[data-theme="dark"] .CodeMirror .cm-atom { color: var(--aura-purple); font-style: italic; }
+html[data-theme="dark"] .CodeMirror .cm-number { color: var(--aura-peach); }
+html[data-theme="dark"] .CodeMirror .cm-string { color: var(--aura-green); }
+html[data-theme="dark"] .CodeMirror .cm-string-2 { color: var(--aura-rose); }
+html[data-theme="dark"] .CodeMirror .cm-def { color: var(--aura-periwinkle); }
+html[data-theme="dark"] .CodeMirror .cm-variable { color: var(--aura-text); }
+html[data-theme="dark"] .CodeMirror .cm-variable-2 { color: #d4e0ff; }
+html[data-theme="dark"] .CodeMirror .cm-variable-3,
+html[data-theme="dark"] .CodeMirror .cm-type { color: var(--aura-gold); }
+html[data-theme="dark"] .CodeMirror .cm-property { color: var(--aura-teal); }
+html[data-theme="dark"] .CodeMirror .cm-operator { color: var(--aura-cyan); }
+html[data-theme="dark"] .CodeMirror .cm-builtin { color: var(--aura-blue); }
+html[data-theme="dark"] .CodeMirror .cm-meta { color: var(--aura-amber); }
+html[data-theme="dark"] .CodeMirror .cm-qualifier { color: #f9c74f; }
+html[data-theme="dark"] .CodeMirror .cm-tag { color: var(--aura-rose); }
+html[data-theme="dark"] .CodeMirror .cm-attribute { color: var(--aura-attribute); }
+html[data-theme="dark"] .CodeMirror .cm-bracket,
+html[data-theme="dark"] .CodeMirror .cm-punctuation { color: var(--aura-punctuation); }
+html[data-theme="dark"] .CodeMirror .cm-header { color: var(--aura-purple); font-weight: bold; }
+html[data-theme="dark"] .CodeMirror .cm-strong { color: var(--aura-gold); font-weight: bold; }
+html[data-theme="dark"] .CodeMirror .cm-em { font-style: italic; }
+html[data-theme="dark"] .CodeMirror .cm-link { color: var(--aura-periwinkle); }
+html[data-theme="dark"] .CodeMirror .cm-quote { color: var(--aura-text-muted); font-style: italic; }
+html[data-theme="dark"] .CodeMirror .cm-hr { color: #555b7a; }
+html[data-theme="dark"] .CodeMirror .cm-positive { color: var(--aura-green); }
+html[data-theme="dark"] .CodeMirror .cm-negative { color: var(--aura-red); }
+html[data-theme="dark"] .CodeMirror .cm-error { color: #ffffff; background-color: #ff537044; }
+
+/* highlight.js (read-only / published code) */
+html[data-theme="dark"] .hljs { color: var(--aura-text); background: var(--aura-bg-chrome); }
+html[data-theme="dark"] .hljs-comment,
+html[data-theme="dark"] .hljs-quote { color: var(--aura-text-muted); font-style: italic; }
+html[data-theme="dark"] .hljs-keyword,
+html[data-theme="dark"] .hljs-literal,
+html[data-theme="dark"] .hljs-selector-tag { color: var(--aura-purple); font-style: italic; }
+html[data-theme="dark"] .hljs-string,
+html[data-theme="dark"] .hljs-addition { color: var(--aura-green); }
+html[data-theme="dark"] .hljs-number { color: var(--aura-peach); }
+html[data-theme="dark"] .hljs-title,
+html[data-theme="dark"] .hljs-title.function_ { color: var(--aura-periwinkle); }
+html[data-theme="dark"] .hljs-title.class_,
+html[data-theme="dark"] .hljs-type { color: var(--aura-gold); }
+html[data-theme="dark"] .hljs-built_in { color: var(--aura-blue); }
+html[data-theme="dark"] .hljs-attr,
+html[data-theme="dark"] .hljs-property { color: var(--aura-teal); }
+html[data-theme="dark"] .hljs-attribute { color: var(--aura-attribute); }
+html[data-theme="dark"] .hljs-name { color: var(--aura-rose); }
+html[data-theme="dark"] .hljs-operator { color: var(--aura-cyan); }
+html[data-theme="dark"] .hljs-punctuation { color: var(--aura-punctuation); }
+html[data-theme="dark"] .hljs-meta { color: var(--aura-amber); }
+html[data-theme="dark"] .hljs-regexp { color: var(--aura-rose); }
+html[data-theme="dark"] .hljs-variable,
+html[data-theme="dark"] .hljs-template-variable { color: var(--aura-text); }
+html[data-theme="dark"] .hljs-deletion { color: var(--aura-red); }

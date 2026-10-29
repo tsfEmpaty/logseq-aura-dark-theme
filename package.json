@@ -1,0 +1,24 @@
+{
+  "name": "logseq-aura-dark-theme",
+  "version": "0.1.0",
+  "description": "Aura Dark for Logseq: deep purple dark theme ported from VS Code, with bundled Hack Nerd Font Mono.",
+  "author": "tsfEmpaty",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsfEmpaty/logseq-aura-dark-theme"
+  },
+  "logseq": {
+    "id": "logseq-aura-dark-theme",
+    "title": "Aura Dark",
+    "icon": "./icon.png",
+    "themes": [
+      {
+        "name": "Aura Dark",
+        "url": "./custom.css",
+        "description": "Deep purple dark theme with Hack Nerd Font Mono for code",
+        "mode": "dark"
+      }
+    ]
+  }
+}
