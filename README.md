@@ -3,7 +3,21 @@
 Deep purple dark theme for Logseq, ported from the VS Code theme
 [Aura Dark](https://github.com/vinaycodes-io/aura-dark-theme) by Vinay.
 
-<!-- TODO: screenshot (required by the Logseq marketplace) -->
+![Journals](https://raw.githubusercontent.com/tsfEmpaty/logseq-aura-dark-theme/main/screenshots/journals.png)
+
+## Screenshots
+
+### Page
+![Page](https://raw.githubusercontent.com/tsfEmpaty/logseq-aura-dark-theme/main/screenshots/page-view-wide-mode.png)
+
+### Code
+![Code](https://raw.githubusercontent.com/tsfEmpaty/logseq-aura-dark-theme/main/screenshots/c-syntax-showcase.png)
+
+### Diagrams and tables
+![Diagrams](https://raw.githubusercontent.com/tsfEmpaty/logseq-aura-dark-theme/main/screenshots/diagrams.png)
+
+### Flashcards
+![Flashcards](https://raw.githubusercontent.com/tsfEmpaty/logseq-aura-dark-theme/main/screenshots/flashcards.png)
 
 ## Features
 
