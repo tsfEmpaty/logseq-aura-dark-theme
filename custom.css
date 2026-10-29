@@ -58,6 +58,7 @@ html[data-theme="dark"] {
   --aura-border-soft: #2a2c3a;
 
   --aura-text: #e0e0e0;
+  --aura-text-content: #c8cbd8;
   --aura-text-secondary: #a6accd;
   --aura-text-muted: #6b7a99;
   --aura-text-faint: #3e4460;
@@ -70,6 +71,7 @@ html[data-theme="dark"] {
   --aura-blue: #61afef;
   --aura-green: #c3e88d;
   --aura-gold: #ffcb6b;
+  --aura-gold-soft: #e2c08d;
   --aura-amber: #ffd580;
   --aura-teal: #7fdbca;
   --aura-teal-light: #9eeae0;
@@ -157,7 +159,7 @@ html[data-theme="dark"] {
   --ls-tertiary-border-color: var(--aura-border-soft);
   --ls-guideline-color: var(--aura-bg-active);
 
-  --ls-primary-text-color: var(--aura-text);
+  --ls-primary-text-color: var(--aura-text-content);
   --ls-secondary-text-color: var(--aura-text-secondary);
   --ls-title-text-color: var(--aura-purple);
   --ls-head-text-color: var(--aura-text);
@@ -255,8 +257,19 @@ html[data-theme="dark"] :is(h1, h2, h3) {
   color: var(--aura-purple);
 }
 
+/* Long-form text: softer than the VS Code editor foreground */
+html[data-theme="dark"] .block-content {
+  color: var(--aura-text-content);
+}
+
 html[data-theme="dark"] .block-content :is(b, strong) {
-  color: var(--aura-gold);
+  color: var(--aura-gold-soft);
+}
+
+/* Keyboard focus ring in accent instead of white */
+html[data-theme="dark"] .left-sidebar-inner :focus-visible {
+  outline: 1px solid #c792ea66;
+  outline-offset: -1px;
 }
 
 html[data-theme="dark"] .block-content blockquote {
