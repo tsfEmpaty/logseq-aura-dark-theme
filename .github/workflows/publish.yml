@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      PKG: ${{ github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag matches package.json version
+        run: |
+          version="v$(jq -r .version package.json)"
+          if [ "$version" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match package.json version $version"
+            exit 1
+          fi
+
+      - name: Package
+        run: |
+          mkdir -p "dist/$PKG"
+          cp -r package.json custom.css icon.png fonts README.md LICENSE "dist/$PKG/"
+          cd dist && zip -r "$PKG-${GITHUB_REF_NAME}.zip" "$PKG"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
