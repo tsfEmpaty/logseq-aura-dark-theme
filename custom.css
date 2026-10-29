@@ -78,10 +78,8 @@ html[data-theme="dark"] {
 
   --aura-font-mono: "Hack Nerd Font Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
-  /* Nerd Font as the last fallback: regular text keeps the UI font,
-     Nerd Font icon glyphs (private use area) still render. */
-  --ls-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Hack Nerd Font Mono";
+  /* Hack Nerd Font Mono for the whole UI */
+  --ls-font-family: var(--aura-font-mono);
 
   /* ----- Logseq new UI: gray scale (01 = app background, 12 = high-contrast text) ----- */
   --lx-gray-01: #1e1f29;
@@ -221,6 +219,11 @@ html[data-theme="dark"] {
 
 /* ---------- Layout surfaces ---------- */
 
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  font-family: var(--aura-font-mono);
+}
+
 html[data-theme="dark"] body,
 html[data-theme="dark"] #main-content-container {
   background-color: var(--aura-bg-editor);
@@ -265,6 +268,24 @@ html[data-theme="dark"] .ls-block h6 {
   color: var(--aura-purple);
 }
 
+/* Compact journal dates */
+html[data-theme="dark"] .journal-title,
+html[data-theme="dark"] .journal-title .title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--aura-purple);
+}
+
+/* Sidebar page lists stay neutral, accent only on hover */
+html[data-theme="dark"] .left-sidebar-inner .nav-contents-container a {
+  color: var(--aura-text);
+}
+
+html[data-theme="dark"] .left-sidebar-inner .nav-contents-container a:hover {
+  color: var(--aura-purple);
+}
+
 html[data-theme="dark"] .ls-block b,
 html[data-theme="dark"] .ls-block strong {
   color: var(--aura-gold);
@@ -295,17 +316,39 @@ html[data-theme="dark"] .CodeMirror {
   font-family: var(--aura-font-mono);
 }
 
+/* Code block as a window card with traffic-light dots */
+html[data-theme="dark"] .extensions__code {
+  position: relative;
+  padding-top: 32px;
+  border: 1px solid var(--aura-border-soft);
+  border-radius: 10px;
+  background-color: var(--aura-bg-editor);
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .extensions__code::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 20px 0 #febc2e, 40px 0 #28c840;
+}
+
 html[data-theme="dark"] .CodeMirror {
-  background-color: var(--aura-bg-chrome);
+  background-color: transparent;
   color: var(--aura-text);
 }
 
-html[data-theme="dark"] .CodeMirror-gutters {
-  background-color: var(--aura-bg-chrome);
-  border-right: 1px solid var(--aura-border);
+html[data-theme="dark"] .CodeMirror .CodeMirror-gutters {
+  background-color: transparent;
+  border-right: none;
 }
 
-html[data-theme="dark"] .CodeMirror-linenumber { color: var(--aura-text-faint); }
+html[data-theme="dark"] .CodeMirror .CodeMirror-linenumber { color: var(--aura-text-faint); }
 html[data-theme="dark"] .CodeMirror-cursor { border-left-color: var(--aura-purple); }
 html[data-theme="dark"] .CodeMirror-selected,
 html[data-theme="dark"] .CodeMirror-focused .CodeMirror-selected { background: #c792ea33; }

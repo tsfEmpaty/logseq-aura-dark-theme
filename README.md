@@ -10,7 +10,8 @@ Deep purple dark theme for Logseq, ported from the VS Code theme
 - Aura Dark palette for the whole UI: sidebars, header, menus, command palette, page content
 - Works with both Logseq UI variable sets (`--ls-*` and the newer `--lx-*` / shadcn tokens)
 - Code blocks colored like Aura Dark in VS Code (CodeMirror and highlight.js)
-- Bundled **Hack Nerd Font Mono**: used for code blocks and inline code, and as an icon fallback everywhere, so Nerd Font glyphs render without installing the font
+- Bundled **Hack Nerd Font Mono** for the whole UI and code, Nerd Font glyphs render without installing the font
+- Compact journal dates, code blocks styled as window cards
 
 ## Install
 
