@@ -311,6 +311,12 @@ html[data-theme="dark"] :is(.CodeMirror, .cm-editor) {
   line-height: 1.65;
 }
 
+/* Logseq's code wrapper has its own darker square background that shows in the rounded corners */
+html[data-theme="dark"] :is(.extensions__code, :has(> .CodeMirror), :has(> .cm-editor)) {
+  background: transparent !important;
+  border-radius: 12px;
+}
+
 /* macOS traffic lights */
 html[data-theme="dark"] :is(.CodeMirror, .cm-editor)::before {
   content: "";
