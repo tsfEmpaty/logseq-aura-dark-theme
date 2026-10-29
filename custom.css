@@ -42,6 +42,11 @@
 
 /* ---------- Palette ---------- */
 
+:root {
+  --aura-font-mono: "Hack Nerd Font Mono", "Hack Nerd Font", ui-monospace, Consolas, monospace;
+  --ls-font-family: var(--aura-font-mono);
+}
+
 html[data-theme="dark"] {
   /* Aura palette (names follow the original README) */
   --aura-bg-editor: #1e1f29;
@@ -56,30 +61,25 @@ html[data-theme="dark"] {
   --aura-text-secondary: #a6accd;
   --aura-text-muted: #6b7a99;
   --aura-text-faint: #3e4460;
+  --aura-icon: #555870;
 
   --aura-purple: #c792ea;
   --aura-purple-light: #d4aaff;
-  --aura-purple-button: #7b3fbe;
-  --aura-purple-button-hover: #9b5fd4;
   --aura-periwinkle: #82aaff;
+  --aura-periwinkle-light: #9bb8ff;
   --aura-blue: #61afef;
   --aura-green: #c3e88d;
   --aura-gold: #ffcb6b;
   --aura-amber: #ffd580;
   --aura-teal: #7fdbca;
+  --aura-teal-light: #9eeae0;
   --aura-cyan: #89ddff;
   --aura-peach: #f78c6c;
   --aura-rose: #f07178;
   --aura-red: #ff5370;
-  --aura-violet: #9b8fef;
   --aura-punctuation: #697098;
   --aura-attribute: #f9a87a;
-  --aura-type: #c8a84b;
-
-  --aura-font-mono: "Hack Nerd Font Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
-
-  /* Hack Nerd Font Mono for the whole UI */
-  --ls-font-family: var(--aura-font-mono);
+  --aura-qualifier: #f9c74f;
 
   /* ----- Logseq new UI: gray scale (01 = app background, 12 = high-contrast text) ----- */
   --lx-gray-01: #1e1f29;
@@ -146,8 +146,8 @@ html[data-theme="dark"] {
   /* ----- Logseq classic variables ----- */
   --ls-primary-background-color: var(--aura-bg-editor);
   --ls-secondary-background-color: var(--aura-bg-sidebar);
-  --ls-tertiary-background-color: var(--aura-bg-active);
-  --ls-quaternary-background-color: var(--aura-bg-hover);
+  --ls-tertiary-background-color: var(--aura-bg-chrome);
+  --ls-quaternary-background-color: var(--aura-bg-active);
   --ls-table-tr-even-background-color: var(--aura-bg-sidebar);
   --ls-active-primary-color: var(--aura-purple);
   --ls-active-secondary-color: var(--aura-purple-light);
@@ -161,15 +161,15 @@ html[data-theme="dark"] {
   --ls-secondary-text-color: var(--aura-text-secondary);
   --ls-title-text-color: var(--aura-purple);
   --ls-head-text-color: var(--aura-text);
-  --ls-icon-color: var(--aura-text-muted);
+  --ls-icon-color: var(--aura-icon);
 
-  --ls-link-text-color: var(--aura-purple);
-  --ls-link-text-hover-color: var(--aura-purple-light);
-  --ls-link-ref-text-color: var(--aura-purple);
-  --ls-link-ref-text-hover-color: var(--aura-purple-light);
+  --ls-link-text-color: var(--aura-periwinkle);
+  --ls-link-text-hover-color: var(--aura-periwinkle-light);
+  --ls-link-ref-text-color: var(--aura-periwinkle);
+  --ls-link-ref-text-hover-color: var(--aura-periwinkle-light);
   --ls-block-ref-link-text-color: var(--aura-periwinkle);
   --ls-tag-text-color: var(--aura-teal);
-  --ls-tag-text-hover-color: var(--aura-teal);
+  --ls-tag-text-hover-color: var(--aura-teal-light);
 
   --ls-block-bullet-color: var(--aura-text-faint);
   --ls-block-bullet-border-color: var(--aura-bg-active);
@@ -183,9 +183,10 @@ html[data-theme="dark"] {
   --ls-block-properties-background-color: var(--aura-bg-sidebar);
   --ls-page-properties-background-color: var(--aura-bg-sidebar);
 
-  --ls-page-checkbox-color: var(--aura-bg-active);
+  --ls-page-checkbox-color: var(--aura-purple);
   --ls-page-checkbox-border-color: var(--aura-text-faint);
 
+  --ls-quote-background-color: var(--aura-bg-sidebar);
   --ls-page-blockquote-color: var(--aura-text-muted);
   --ls-page-blockquote-bg-color: var(--aura-bg-sidebar);
   --ls-page-blockquote-border-color: var(--aura-purple);
@@ -204,7 +205,7 @@ html[data-theme="dark"] {
   --ls-search-background-color: var(--aura-bg-sidebar);
   --ls-header-button-background: var(--aura-bg-chrome);
   --ls-slide-background-color: var(--aura-bg-editor);
-  --ls-cloze-text-color: var(--aura-amber);
+  --ls-cloze-text-color: var(--aura-gold);
   --ls-focus-ring-color: #c792ea99;
 
   --ls-error-text-color: var(--aura-red);
@@ -217,82 +218,57 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
+/* ---------- Font ---------- */
+
+/* Logseq sets its own font on these, so !important is required */
+html[data-theme="dark"] :is(body, .editor-wrapper, .block-content, .cp__sidebar-left-layout,
+  code, pre, kbd, .CodeMirror, .cm-editor, textarea, input) {
+  font-family: var(--aura-font-mono) !important;
+}
+
+html[data-theme="dark"] :is(.block-content, .editor-wrapper textarea) {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
 /* ---------- Layout surfaces ---------- */
-
-html[data-theme="dark"],
-html[data-theme="dark"] body {
-  font-family: var(--aura-font-mono);
-}
-
-html[data-theme="dark"] body,
-html[data-theme="dark"] #main-content-container {
-  background-color: var(--aura-bg-editor);
-}
-
-html[data-theme="dark"] .cp__header {
-  background-color: var(--aura-bg-chrome);
-  border-bottom: 1px solid var(--aura-border);
-}
-
-html[data-theme="dark"] .left-sidebar-inner {
-  background-color: var(--aura-bg-sidebar);
-  border-right: 1px solid var(--aura-border);
-}
-
-html[data-theme="dark"] .cp__right-sidebar {
-  background-color: var(--aura-bg-chrome);
-  border-left: 1px solid var(--aura-border);
-}
 
 html[data-theme="dark"] ::selection {
   background-color: #c792ea33;
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background-color: #3e445155;
+/* ---------- Buttons ---------- */
+
+html[data-theme="dark"] .ui__button {
+  background-color: transparent;
+  color: var(--aura-text-secondary);
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background-color: #c792ea70;
-}
-
-/* ---------- Content ---------- */
-
-html[data-theme="dark"] .page-title,
-html[data-theme="dark"] .ls-block h1,
-html[data-theme="dark"] .ls-block h2,
-html[data-theme="dark"] .ls-block h3,
-html[data-theme="dark"] .ls-block h4,
-html[data-theme="dark"] .ls-block h5,
-html[data-theme="dark"] .ls-block h6 {
+html[data-theme="dark"] .ui__button:hover {
+  background-color: #c792ea20;
   color: var(--aura-purple);
 }
 
-/* Compact journal dates */
-html[data-theme="dark"] .journal-title,
-html[data-theme="dark"] .journal-title .title {
-  font-size: 1.25rem;
-  font-weight: 400;
-  letter-spacing: 0;
+/* ---------- Typography ---------- */
+
+html[data-theme="dark"] :is(h1, h2, h3) {
   color: var(--aura-purple);
 }
 
-/* Sidebar page lists stay neutral, accent only on hover */
-html[data-theme="dark"] .left-sidebar-inner .nav-contents-container a {
-  color: var(--aura-text);
-}
-
-html[data-theme="dark"] .left-sidebar-inner .nav-contents-container a:hover {
-  color: var(--aura-purple);
-}
-
-html[data-theme="dark"] .ls-block b,
-html[data-theme="dark"] .ls-block strong {
+html[data-theme="dark"] .block-content :is(b, strong) {
   color: var(--aura-gold);
 }
 
-html[data-theme="dark"] .ls-block blockquote {
+html[data-theme="dark"] .block-content blockquote {
   font-style: italic;
+}
+
+/* Compact journal dates */
+html[data-theme="dark"] :is(.journal-title, .journal-title .title, .journal-title h1) {
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0;
+  color: var(--aura-purple);
 }
 
 /* Admonitions map to the editor diagnostic colors */
@@ -307,111 +283,100 @@ html[data-theme="dark"] .admonitionblock.important { border-left-color: var(--au
 html[data-theme="dark"] .admonitionblock.warning { border-left-color: var(--aura-amber); }
 html[data-theme="dark"] .admonitionblock.caution { border-left-color: var(--aura-red); }
 
-/* ---------- Code ---------- */
+/* ---------- Code blocks: window card (CodeMirror 5 and 6) ---------- */
 
-html[data-theme="dark"] code,
-html[data-theme="dark"] pre,
-html[data-theme="dark"] kbd,
-html[data-theme="dark"] .CodeMirror {
-  font-family: var(--aura-font-mono);
-}
-
-/* Code block as a window card with traffic-light dots */
-html[data-theme="dark"] .extensions__code {
+/* Logseq's own CodeMirror theme wins without !important */
+html[data-theme="dark"] :is(.CodeMirror, .cm-editor) {
   position: relative;
-  padding-top: 32px;
+  background: var(--aura-bg-editor) !important;
+  color: var(--aura-text) !important;
   border: 1px solid var(--aura-border-soft);
-  border-radius: 10px;
-  background-color: var(--aura-bg-editor);
-  overflow: hidden;
+  border-radius: 12px;
+  padding-top: 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
-html[data-theme="dark"] .extensions__code::before {
+/* macOS traffic lights */
+html[data-theme="dark"] :is(.CodeMirror, .cm-editor)::before {
   content: "";
   position: absolute;
-  top: 12px;
+  top: 14px;
   left: 16px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: #ff5f57;
-  box-shadow: 20px 0 #febc2e, 40px 0 #28c840;
+  box-shadow: 20px 0 0 #febc2e, 40px 0 0 #28c840;
+  z-index: 5;
 }
 
-html[data-theme="dark"] .CodeMirror {
-  background-color: transparent;
-  color: var(--aura-text);
+html[data-theme="dark"] :is(.CodeMirror-gutters, .cm-gutters) {
+  background: transparent !important;
+  border-right: none !important;
 }
 
-html[data-theme="dark"] .CodeMirror .CodeMirror-gutters {
-  background-color: transparent;
-  border-right: none;
+html[data-theme="dark"] :is(.CodeMirror-linenumber, .cm-lineNumbers .cm-gutterElement) {
+  color: var(--aura-text-faint) !important;
+  padding-right: 14px;
 }
 
-html[data-theme="dark"] .CodeMirror .CodeMirror-linenumber { color: var(--aura-text-faint); }
-html[data-theme="dark"] .CodeMirror-cursor { border-left-color: var(--aura-purple); }
-html[data-theme="dark"] .CodeMirror-selected,
-html[data-theme="dark"] .CodeMirror-focused .CodeMirror-selected { background: #c792ea33; }
-html[data-theme="dark"] .CodeMirror-activeline-background { background: var(--aura-bg-active); }
+html[data-theme="dark"] :is(.CodeMirror-cursor, .cm-cursor) {
+  border-left: 2px solid var(--aura-purple) !important;
+}
+
+html[data-theme="dark"] :is(.CodeMirror-selected, .cm-selectionBackground) {
+  background: #c792ea33 !important;
+}
+
+html[data-theme="dark"] :is(.CodeMirror-activeline-background, .cm-activeLine) {
+  background: var(--aura-bg-active) !important;
+}
+
 html[data-theme="dark"] .CodeMirror-matchingbracket {
   color: var(--aura-purple) !important;
   background: #c792ea22;
 }
 
-/* CodeMirror 5 tokens (TextMate scopes collapsed to CM classes) */
-html[data-theme="dark"] .CodeMirror .cm-comment { color: var(--aura-text-muted); font-style: italic; }
-html[data-theme="dark"] .CodeMirror .cm-keyword { color: var(--aura-purple); font-style: italic; }
-html[data-theme="dark"] .CodeMirror .cm-atom { color: var(--aura-purple); font-style: italic; }
-html[data-theme="dark"] .CodeMirror .cm-number { color: var(--aura-peach); }
-html[data-theme="dark"] .CodeMirror .cm-string { color: var(--aura-green); }
-html[data-theme="dark"] .CodeMirror .cm-string-2 { color: var(--aura-rose); }
-html[data-theme="dark"] .CodeMirror .cm-def { color: var(--aura-periwinkle); }
-html[data-theme="dark"] .CodeMirror .cm-variable { color: var(--aura-text); }
-html[data-theme="dark"] .CodeMirror .cm-variable-2 { color: #d4e0ff; }
-html[data-theme="dark"] .CodeMirror .cm-variable-3,
-html[data-theme="dark"] .CodeMirror .cm-type { color: var(--aura-gold); }
-html[data-theme="dark"] .CodeMirror .cm-property { color: var(--aura-teal); }
-html[data-theme="dark"] .CodeMirror .cm-operator { color: var(--aura-cyan); }
-html[data-theme="dark"] .CodeMirror .cm-builtin { color: var(--aura-blue); }
-html[data-theme="dark"] .CodeMirror .cm-meta { color: var(--aura-amber); }
-html[data-theme="dark"] .CodeMirror .cm-qualifier { color: #f9c74f; }
-html[data-theme="dark"] .CodeMirror .cm-tag { color: var(--aura-rose); }
-html[data-theme="dark"] .CodeMirror .cm-attribute { color: var(--aura-attribute); }
-html[data-theme="dark"] .CodeMirror .cm-bracket,
-html[data-theme="dark"] .CodeMirror .cm-punctuation { color: var(--aura-punctuation); }
-html[data-theme="dark"] .CodeMirror .cm-header { color: var(--aura-purple); font-weight: bold; }
-html[data-theme="dark"] .CodeMirror .cm-strong { color: var(--aura-gold); font-weight: bold; }
-html[data-theme="dark"] .CodeMirror .cm-em { font-style: italic; }
-html[data-theme="dark"] .CodeMirror .cm-link { color: var(--aura-periwinkle); }
-html[data-theme="dark"] .CodeMirror .cm-quote { color: var(--aura-text-muted); font-style: italic; }
-html[data-theme="dark"] .CodeMirror .cm-hr { color: #555b7a; }
-html[data-theme="dark"] .CodeMirror .cm-positive { color: var(--aura-green); }
-html[data-theme="dark"] .CodeMirror .cm-negative { color: var(--aura-red); }
-html[data-theme="dark"] .CodeMirror .cm-error { color: #ffffff; background-color: #ff537044; }
+/* ---------- Syntax: CodeMirror 5 (.cm-*) and 6 (.tok-*) ---------- */
+
+html[data-theme="dark"] :is(.cm-keyword, .tok-keyword) { color: var(--aura-purple) !important; font-style: italic; }
+html[data-theme="dark"] :is(.cm-def, .tok-definition) { color: var(--aura-periwinkle) !important; }
+html[data-theme="dark"] :is(.cm-builtin, .tok-standard) { color: var(--aura-periwinkle) !important; }
+html[data-theme="dark"] :is(.cm-variable, .tok-variableName) { color: var(--aura-text) !important; }
+html[data-theme="dark"] .cm-variable-2 { color: var(--aura-rose) !important; font-style: italic; }
+html[data-theme="dark"] :is(.cm-variable-3, .cm-type, .tok-typeName, .tok-className) { color: var(--aura-gold) !important; }
+html[data-theme="dark"] :is(.cm-property, .tok-propertyName) { color: var(--aura-periwinkle) !important; }
+html[data-theme="dark"] :is(.cm-string, .cm-string-2, .tok-string, .tok-string2) { color: var(--aura-green) !important; }
+html[data-theme="dark"] :is(.cm-number, .tok-number) { color: var(--aura-peach) !important; }
+html[data-theme="dark"] :is(.cm-atom, .tok-atom, .tok-bool) { color: var(--aura-purple) !important; font-style: italic; }
+html[data-theme="dark"] :is(.cm-comment, .tok-comment) { color: var(--aura-text-muted) !important; font-style: italic; }
+html[data-theme="dark"] :is(.cm-operator, .tok-operator) { color: var(--aura-cyan) !important; }
+html[data-theme="dark"] :is(.cm-punctuation, .cm-bracket, .tok-punctuation) { color: var(--aura-punctuation) !important; }
+html[data-theme="dark"] :is(.cm-meta, .tok-meta) { color: var(--aura-amber) !important; }
+html[data-theme="dark"] :is(.cm-tag, .tok-tagName) { color: var(--aura-rose) !important; }
+html[data-theme="dark"] :is(.cm-attribute, .tok-attributeName) { color: var(--aura-attribute) !important; }
+html[data-theme="dark"] .cm-qualifier { color: var(--aura-qualifier) !important; }
+html[data-theme="dark"] :is(.cm-header, .tok-heading) { color: var(--aura-purple) !important; font-weight: bold; }
+html[data-theme="dark"] :is(.cm-link, .tok-link) { color: var(--aura-periwinkle) !important; }
+html[data-theme="dark"] .cm-error { color: #ffffff !important; background-color: #ff537044; }
 
 /* highlight.js (read-only / published code) */
 html[data-theme="dark"] .hljs { color: var(--aura-text); background: var(--aura-bg-chrome); }
-html[data-theme="dark"] .hljs-comment,
-html[data-theme="dark"] .hljs-quote { color: var(--aura-text-muted); font-style: italic; }
-html[data-theme="dark"] .hljs-keyword,
-html[data-theme="dark"] .hljs-literal,
-html[data-theme="dark"] .hljs-selector-tag { color: var(--aura-purple); font-style: italic; }
-html[data-theme="dark"] .hljs-string,
-html[data-theme="dark"] .hljs-addition { color: var(--aura-green); }
+html[data-theme="dark"] :is(.hljs-comment, .hljs-quote) { color: var(--aura-text-muted); font-style: italic; }
+html[data-theme="dark"] :is(.hljs-keyword, .hljs-literal, .hljs-selector-tag) { color: var(--aura-purple); font-style: italic; }
+html[data-theme="dark"] :is(.hljs-string, .hljs-addition) { color: var(--aura-green); }
 html[data-theme="dark"] .hljs-number { color: var(--aura-peach); }
-html[data-theme="dark"] .hljs-title,
-html[data-theme="dark"] .hljs-title.function_ { color: var(--aura-periwinkle); }
-html[data-theme="dark"] .hljs-title.class_,
-html[data-theme="dark"] .hljs-type { color: var(--aura-gold); }
+html[data-theme="dark"] :is(.hljs-title, .hljs-title.function_) { color: var(--aura-periwinkle); }
+html[data-theme="dark"] :is(.hljs-title.class_, .hljs-type) { color: var(--aura-gold); }
 html[data-theme="dark"] .hljs-built_in { color: var(--aura-blue); }
-html[data-theme="dark"] .hljs-attr,
-html[data-theme="dark"] .hljs-property { color: var(--aura-teal); }
+html[data-theme="dark"] :is(.hljs-attr, .hljs-property) { color: var(--aura-teal); }
 html[data-theme="dark"] .hljs-attribute { color: var(--aura-attribute); }
 html[data-theme="dark"] .hljs-name { color: var(--aura-rose); }
 html[data-theme="dark"] .hljs-operator { color: var(--aura-cyan); }
 html[data-theme="dark"] .hljs-punctuation { color: var(--aura-punctuation); }
 html[data-theme="dark"] .hljs-meta { color: var(--aura-amber); }
 html[data-theme="dark"] .hljs-regexp { color: var(--aura-rose); }
-html[data-theme="dark"] .hljs-variable,
-html[data-theme="dark"] .hljs-template-variable { color: var(--aura-text); }
+html[data-theme="dark"] :is(.hljs-variable, .hljs-template-variable) { color: var(--aura-text); }
 html[data-theme="dark"] .hljs-deletion { color: var(--aura-red); }
